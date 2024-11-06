@@ -2,8 +2,12 @@
 
 Quick & easy Chrome extension to automatically save images from the posts you click ❤️ on.
 
-Any contributions and/or suggestion is welcomed!
+Any contribution or suggestion is welcomed!
 
---
+## Install
 
-Icon courtesy of https://github.com/oclero.
+Available on the Chrome Web store just [here](https://chromewebstore.google.com/detail/tumblr-img-saver/gnnflghafnhpggphakcgjmnbkcommmbk). 
+
+---
+
+Icon courtesy of https://github.com/oclero : )
