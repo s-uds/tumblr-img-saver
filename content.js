@@ -13,13 +13,19 @@ function getHighestResolutionImage(srcset) {
 }
 
 function isLikeButton(target) {
-    if (target.tagName === 'svg') {
-        return ICON_HREF_LIST.includes(target.querySelector('use')?.getAttribute('href'));
-    } else if (target.tagName === 'use') {
-        return ICON_HREF_LIST.includes(target.getAttribute('href'));
+    const button = target.closest('button');
+
+    if (!button) {
+        return false;
     }
 
-    return false;
+    const icon = button.querySelector('use');
+
+    if (!icon) {
+        return false;
+    }
+
+    return ICON_HREF_LIST.includes(icon.getAttribute('href'));
 }
 
 function findNearbyElement(x, y, radius = 10) {
@@ -42,16 +48,12 @@ function findNearbyElement(x, y, radius = 10) {
 }
 
 document.body.addEventListener('click', function (event) {
-    if (!isLikeButton(event.target)) {
-        return;
-    }
+    if (!isLikeButton(event.target)) return;
 
     // The article element isn't available in the event target
     const parentArticle = findNearbyElement(event.clientX, event.clientY)?.closest('article');
 
-    if (!parentArticle) {
-        return;
-    }
+    if (!parentArticle) return;
 
     parentArticle.querySelectorAll('img').forEach((img) => {
         // avatars images
@@ -66,7 +68,6 @@ document.body.addEventListener('click', function (event) {
 
         // Use the image hash
         const filename = imgURL.split('/')[6];
-
         chrome.runtime.sendMessage({ action: "downloadImage", url: imgURL, filename });
     })
 });
