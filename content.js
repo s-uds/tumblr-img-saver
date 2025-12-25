@@ -1,4 +1,7 @@
-const ICON_HREF ='#managed-icon__like-empty';
+const ICON_HREF_LIST = [
+    '#managed-icon__like-empty',
+    '#managed-icon__ds-like-outline-24'
+];
 
 function getHighestResolutionImage(srcset) {
     const srcsetArray = srcset.split(',').map(item => {
@@ -11,9 +14,9 @@ function getHighestResolutionImage(srcset) {
 
 function isLikeButton(target) {
     if (target.tagName === 'svg') {
-        return target.querySelector('use')?.getAttribute('href') === ICON_HREF;
+        return ICON_HREF_LIST.includes(target.querySelector('use')?.getAttribute('href'));
     } else if (target.tagName === 'use') {
-        return target.getAttribute('href') === ICON_HREF;
+        return ICON_HREF_LIST.includes(target.getAttribute('href'));
     }
 
     return false;
